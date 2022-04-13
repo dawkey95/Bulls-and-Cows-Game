@@ -29,7 +29,7 @@ public class BullsAndCows {
                 break;
 
             case MEDIUM:
-                //computer = new Medium();
+                computer = new Medium();
                 break;
 
             case HARD:
@@ -45,6 +45,7 @@ public class BullsAndCows {
         System.out.println("Your secret code is: " + user.toString(user.secretCode));
 
         computer.setSecretCode();
+        System.out.println("Secret code is: " + computer.toString(computer.secretCode));
         game.playGame(user, computer);
     }
 }

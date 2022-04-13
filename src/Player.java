@@ -6,7 +6,6 @@ public abstract class Player {
     protected int[] secretCode = new int[4];
     protected int[] playerGuess = new int[4];
     private String player;
-//    protected String gameDifficulty;
 
     //Child classes will be overriding this method when extended to set each player's secret code.
     public abstract void setSecretCode();
@@ -63,7 +62,7 @@ public abstract class Player {
         //If user enters anything but a number an error is produced asking the user to please
         //only enter numbers.
         catch (NumberFormatException e) {
-            System.out.println("You didn't enter a number!");
+            System.out.println("You did not enter a number!");
             return false;
         }
 

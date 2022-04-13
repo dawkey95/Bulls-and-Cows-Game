@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.IOException;
+
 public class Game {
     private String gameWinner = null;
 
@@ -29,29 +32,29 @@ public class Game {
 
         boolean valid = false;
         while (!valid) {
-            System.out.println("Choose a difficulty level:");
+            System.out.println("To start please choose a difficulty:");
+            System.out.println("Press 1, 2 or 3 to make your choice.");
             System.out.println("\t1. Easy");
             System.out.println("\t2. Medium");
             System.out.println("\t3. Hard");
-            System.out.println("Press 1, 2 or 3 to make your choice.");
 
             String enteredInput = Keyboard.readInput();
 
             if (enteredInput.equalsIgnoreCase("1")) {
                 gameDifficulty = Level.EASY;
-                System.out.println("Easy mode selected");
+                System.out.println("Easy Mode");
                 valid = true;
             }
 
             else if (enteredInput.equalsIgnoreCase("2")) {
                 gameDifficulty = Level.MEDIUM;
-                System.out.println("Medium mode selected");
+                System.out.println("Medium Mode");
                 valid = true;
             }
 
             else if (enteredInput.equalsIgnoreCase("3")) {
                 gameDifficulty = Level.HARD;
-                System.out.println("Hard mode selected");
+                System.out.println("Hard Mode");
                 valid = true;
             }
 
@@ -70,6 +73,7 @@ public class Game {
             if (gameWinner != null) {
                 break;
             }
+
             System.out.print("Please enter your guess. Guess " + i + ": ");
 
             if (user.userGuessInput(user.playerGuess)) {

@@ -33,6 +33,4 @@ public abstract class Computer extends Player {
     public void setSecretCode() {
         this.secretCode = generateSecretCode();
     }
-
-
 }
