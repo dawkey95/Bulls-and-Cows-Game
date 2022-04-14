@@ -2,7 +2,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Medium extends Computer {
@@ -29,10 +31,35 @@ public class Medium extends Computer {
             appendAIGuess.close();
             System.out.println("Successfully wrote to the file: " + f);
 
-            //Scanner to read data stored in file
+            //Scanner to read data stored in file and check for duplicate guesses
             Scanner myReader = new Scanner(f);
             while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
+
+                //Reads line from file and replaces expressions with "".
+                String data = myReader.nextLine()
+                        .replaceAll(",", "")
+                        .replaceAll("\\[", "")
+                        .replaceAll("\\]", "")
+                        .replaceAll(" ", "");
+
+                char dupeData[] = data.toCharArray();
+                int count;
+
+                for(int i = 0; i < dupeData.length; i++) {
+                    count = 1;
+                    for(int k = i + 1; k < dupeData.length; k++) {
+                        if(dupeData[i] == dupeData[k] && dupeData[i] != ' ') {
+                            count++;
+                            dupeData[k] = '0';
+                        }
+                    }
+
+                    //A character is considered as duplicate if count is greater than 1
+                    if(count > 1 && dupeData[i] != '0')
+                        System.out.println("Testing for dupes: " + dupeData[i]);
+                        generateSecretCode();
+                }
+
                 System.out.println(data);
             }
             myReader.close();
