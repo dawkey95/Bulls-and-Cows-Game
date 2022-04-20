@@ -1,7 +1,9 @@
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
-public class Game {
+public class Game implements SaveToFile {
     private String gameWinner = null;
 
     public Game() {
@@ -90,10 +92,10 @@ public class Game {
                 i--;
             }
         }
+        saveFile();
     }
 
     public void printResult(Player player) {
-
         System.out.println(player.getName() + " guess: " + player.toString(player.playerGuess) + "\nResult: "
                 + player.bulls + " bull(s), and " + player.cows + " cow(s).");
 
@@ -110,5 +112,10 @@ public class Game {
             System.out.println("Draw!");
             this.gameWinner = player.getName();
         }
+    }
+
+    @Override
+    public void saveFile() {
+        SaveToFile.super.saveFile();
     }
 }

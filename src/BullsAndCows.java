@@ -33,7 +33,7 @@ public class BullsAndCows {
                 break;
 
             case HARD:
-//                computer = new EasyLevel();
+//                computer = new Hard();
                 break;
 
             default:

@@ -1,5 +1,7 @@
+import java.io.BufferedWriter;
+
 //Parent class of the game
-public abstract class Player {
+public abstract class Player implements SaveToFile {
 
     //Creates the variables and array's needed in the Player class.
     protected int bulls, cows;
@@ -44,7 +46,7 @@ public abstract class Player {
     public boolean checkInput(String input) {
         try {
             if (input.length() != 4) {
-                throw new IndexOutOfBoundsException("You need to enter 4 numbers!");
+                throw new IndexOutOfBoundsException("Please enter 4 numbers!");
             }
 
             //Nested for-loops check and match each digit to ensure no duplicates. If duplicate error is thrown
@@ -52,7 +54,7 @@ public abstract class Player {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
                     if (i != j && input.charAt(i) == input.charAt(j)) {
-                        throw new DupeNumException("You need to enter 4 different numbers!");
+                        throw new DupeNumException("Please enter 4 different numbers!");
                     }
                 }
             }
