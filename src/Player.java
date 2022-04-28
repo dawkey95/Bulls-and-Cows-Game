@@ -1,13 +1,16 @@
-import java.io.BufferedWriter;
+import java.util.LinkedList;
+import java.util.Queue;
 
 //Parent class of the game
-public abstract class Player implements SaveToFile {
+public abstract class Player {
 
     //Creates the variables and array's needed in the Player class.
     protected int bulls, cows;
-    protected int[] secretCode = new int[4];
-    protected int[] playerGuess = new int[4];
+    protected static final int lengthOfSecretCode = 4;
+    protected static int[] secretCode = new int[lengthOfSecretCode];
+    protected int[] playerGuess = new int[lengthOfSecretCode];
     private String player;
+    public Queue<String> fileContainingGuesses = new LinkedList<>();
 
     //Child classes will be overriding this method when extended to set each player's secret code.
     public abstract void setSecretCode();
@@ -76,7 +79,7 @@ public abstract class Player implements SaveToFile {
         return true;
     }
 
-    public String toString(int[] secretCode) {
+    public static String toString(int[] secretCode) {
         String s = "";
         for (int i = 0; i < 4; i++) {
             s += secretCode[i];

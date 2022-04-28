@@ -1,10 +1,3 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class User extends Player {
 
     //Sets the player name to whatever the person enters their name to be.
@@ -20,15 +13,24 @@ public class User extends Player {
     //opponents secretCode. It takes the entered string and parses it to an int
     //which is stored in the input array[i].
     public boolean userGuessInput(int[] input){
-        String enteredInput = Keyboard.readInput();
+        String enteredInput = null;
+        while(true) {
 
-        if(checkInput(enteredInput)){
-            for(int i = 0; i < 4; i++) {
-                input[i] = Integer.parseInt(enteredInput.charAt(i) + "");
+            if (fileContainingGuesses.size() > 0) {
+                enteredInput = fileContainingGuesses.remove();
+            } else {
+                enteredInput = Keyboard.readInput();
             }
-            return true;
+
+            if (checkInput(enteredInput)) {
+                break;
+            }
         }
-        return false;
+
+        for (int i = 0; i < lengthOfSecretCode; i++) {
+            input[i] = Integer.parseInt(enteredInput.charAt(i) + "");
+        }
+        return true;
     }
 
     //This overrides the setSecretCode method from the parent class "Player".

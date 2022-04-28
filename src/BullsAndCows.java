@@ -33,7 +33,7 @@ public class BullsAndCows {
                 break;
 
             case HARD:
-//                computer = new Hard();
+                computer = new Hard();
                 break;
 
             default:
@@ -43,9 +43,19 @@ public class BullsAndCows {
         System.out.println("Please enter your secret code:");
         user.setSecretCode();
         System.out.println("Your secret code is: " + user.toString(user.secretCode));
+        game.saveToFile.add("Thanks for playing the game. \nHere are your results.");
+        game.saveToFile.add("\nYour code was: " + user.toString(user.secretCode));
 
         computer.setSecretCode();
-        System.out.println("Secret code is: " + computer.toString(computer.secretCode));
+        System.out.println("AI secret code is: " + computer.toString(computer.secretCode));
+        game.saveToFile.add("AI code was: " + computer.toString(computer.secretCode));
+        game.saveToFile.add("------");
+
+        game.setGuessMode();
+        if(game.getGuessmode().equals("Automatic")) {
+            game.guessFromFile(user);
+        }
+
         game.playGame(user, computer);
     }
 }
