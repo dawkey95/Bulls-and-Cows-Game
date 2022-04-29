@@ -40,7 +40,7 @@ public abstract class Player {
         }
     }
 
-    public class DupeNumException extends Exception {
+    public static class DupeNumException extends Exception {
         public DupeNumException(String message) {
             super(message);
         }

@@ -36,8 +36,8 @@ public class User extends Player {
     //This overrides the setSecretCode method from the parent class "Player".
     @Override
     public void setSecretCode() {
-        while(!userGuessInput(this.secretCode)){
-            this.secretCode = this.playerGuess;
+        while(!userGuessInput(secretCode)){
+            secretCode = this.playerGuess;
         }
     }
 
@@ -45,6 +45,6 @@ public class User extends Player {
     //how many cows or bulls they have with their latest guess.
     @Override
     public void playerGuess(Player playerGuess, Player answer) {
-        clue(this.playerGuess, answer.secretCode);
+        clue(this.playerGuess, secretCode);
     }
 }

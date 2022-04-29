@@ -52,7 +52,7 @@ public class BullsAndCows {
         game.saveToFile.add("------");
 
         game.setGuessMode();
-        if(game.getGuessmode().equals("Automatic")) {
+        if(game.getGuessMode().equals("Automatic")) {
             game.guessFromFile(user);
         }
 

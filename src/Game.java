@@ -7,8 +7,7 @@ public class Game {
     private String guessMode, saveResult;
     public List<String> saveToFile = new ArrayList<>();
 
-    public Game() {
-    }
+    public Game() {}
 
     public enum Level {
         EASY,
@@ -22,9 +21,8 @@ public class Game {
         this.gameDifficulty = gameDifficulty;
     }
 
-    public Level setGameDifficulty() {
+    public void setGameDifficulty() {
         this.gameDifficulty = chooseDifficulty();
-        return this.gameDifficulty;
     }
 
     public Level getGameDifficulty() {
@@ -101,11 +99,11 @@ public class Game {
 
     public void printResult(Player player) {
 
-        System.out.println(player.getName() + " guess: " + player.toString(player.playerGuess) + "\nResult: "
+        System.out.println(player.getName() + " guess: " + Player.toString(player.playerGuess) + "\nResult: "
                 + player.bulls + " bull(s), and " + player.cows + " cow(s).");
         System.out.println("------");
 
-        saveToFile.add(player.getName() + " guess: " + player.toString(player.playerGuess) + "\nResult: "
+        saveToFile.add(player.getName() + " guess: " + Player.toString(player.playerGuess) + "\nResult: "
                 + player.bulls + " bull(s), and " + player.cows + " cow(s).");
         saveToFile.add("------");
 
@@ -154,7 +152,7 @@ public class Game {
         }
     }
 
-    public String getGuessmode() {
+    public String getGuessMode() {
         return this.guessMode;
     }
 

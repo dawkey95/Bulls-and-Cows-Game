@@ -31,6 +31,6 @@ public abstract class Computer extends Player {
     //Override that sets the methods secretCode that the opponent tries to guess
     @Override
     public void setSecretCode() {
-        this.secretCode = generateSecretCode();
+        secretCode = generateSecretCode();
     }
 }
