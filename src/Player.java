@@ -6,11 +6,19 @@ public abstract class Player {
 
     //Creates the variables and array's needed in the Player class.
     protected int bulls, cows;
-    protected static final int lengthOfSecretCode = 4;
-    protected static int[] secretCode = new int[lengthOfSecretCode];
-    protected int[] playerGuess = new int[lengthOfSecretCode];
+
+    //Turn this into a constructor to be able to modify with config.properties
+    protected static int lengthOfSecretCode;
+    protected static int[] secretCode;
+    protected int[] playerGuess;
     private String player;
     public Queue<String> fileContainingGuesses = new LinkedList<>();
+
+    public Player() {
+        lengthOfSecretCode = 4;
+        secretCode = new int[lengthOfSecretCode];
+        playerGuess = new int[lengthOfSecretCode];
+    }
 
     //Child classes will be overriding this method when extended to set each player's secret code.
     public abstract void setSecretCode();
