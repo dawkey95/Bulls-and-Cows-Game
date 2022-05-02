@@ -7,15 +7,19 @@ public abstract class Player {
     //Creates the variables and array's needed in the Player class.
     protected int bulls, cows;
 
-    //Turn this into a constructor to be able to modify with config.properties
     protected static int lengthOfSecretCode;
     protected static int[] secretCode;
     protected int[] playerGuess;
     private String player;
     public Queue<String> fileContainingGuesses = new LinkedList<>();
+    Config cfg = new Config();
+
+    //This cfg.loadConfig(); is printing to the console. FIX!!!!!!!!!!!
 
     public Player() {
-        lengthOfSecretCode = 4;
+        cfg.loadConfig();
+//        System.out.println(Integer.parseInt(cfg.getProperty("lengthOfSecretCode")));
+        lengthOfSecretCode = Integer.parseInt(cfg.getProperty("lengthOfSecretCode"));
         secretCode = new int[lengthOfSecretCode];
         playerGuess = new int[lengthOfSecretCode];
     }
@@ -56,16 +60,16 @@ public abstract class Player {
 
     public boolean checkInput(String input) {
         try {
-            if (input.length() != 4) {
-                throw new IndexOutOfBoundsException("Please enter 4 numbers!");
+            if (input.length() != lengthOfSecretCode) {
+                throw new IndexOutOfBoundsException("Please enter " + lengthOfSecretCode +  " numbers!");
             }
 
             //Nested for-loops check and match each digit to ensure no duplicates. If duplicate error is thrown
             //and user is asked to enter 4 different numbers.
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < 4; j++) {
+            for (int i = 0; i < lengthOfSecretCode; i++) {
+                for (int j = 0; j < lengthOfSecretCode; j++) {
                     if (i != j && input.charAt(i) == input.charAt(j)) {
-                        throw new DupeNumException("Please enter 4 different numbers!");
+                        throw new DupeNumException("Please enter " + lengthOfSecretCode + " different numbers!");
                     }
                 }
             }
@@ -89,7 +93,7 @@ public abstract class Player {
 
     public static String toString(int[] secretCode) {
         String s = "";
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < lengthOfSecretCode; i++) {
             s += secretCode[i];
         }
         return s;

@@ -5,9 +5,20 @@ import java.util.List;
 public class Game {
     private String gameWinner = null;
     private String guessMode, saveResult;
+    int numberOfAttempts;
     public List<String> saveToFile = new ArrayList<>();
+    Config cfg = new Config();
 
-    public Game() {}
+    public void loadConfig() {
+        cfg.loadConfig();
+        numberOfAttempts = Integer.parseInt(cfg.getProperty("numberOfAttempts"));
+    }
+
+    //cfg.loadConfig(); is printing to console. FIX!!!!!!!!!!!!!!
+    public Game() {
+        cfg.loadConfig();
+        numberOfAttempts = Integer.parseInt(cfg.getProperty("numberOfAttempts"));
+    }
 
     public enum Level {
         EASY,
@@ -68,8 +79,6 @@ public class Game {
 
 
     public void playGame(User user, Computer computer) {
-        int numberOfAttempts = 7;
-
         for (int i = 1; i <= numberOfAttempts; i++) {
             if (gameWinner != null) {
                 break;
@@ -117,7 +126,7 @@ public class Game {
             saveToFile.add("\n" + player.getName() + " won the game! Congratulations! 😃");
         }
 
-        else if (numberOfAttempts == 7) {
+        else if (numberOfAttempts == Integer.parseInt(cfg.getProperty("numberOfAttempts"))) {
             System.out.println("Draw!");
             this.gameWinner = player.getName();
             saveToFile.add("\n The game was a draw!");

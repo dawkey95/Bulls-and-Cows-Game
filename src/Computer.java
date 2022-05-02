@@ -21,8 +21,8 @@ public abstract class Computer extends Player {
             Collections.shuffle(numbers);
         }
 
-        int[] randomNumber = new int[4];
-        for (int j = 0; j < 4; j++) {
+        int[] randomNumber = new int[lengthOfSecretCode];
+        for (int j = 0; j < lengthOfSecretCode; j++) {
             randomNumber[j] = numbers.get(j);
         }
         return randomNumber;

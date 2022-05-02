@@ -7,7 +7,7 @@ public class BullsAndCows {
         System.out.println("You can also choose the difficulty for the computer.");
         System.out.println("BULLS = # common digits with exact matches.");
         System.out.println("COWS = # common digits in wrong position.");
-        System.out.println("You get 7 attempts to guess the computers number.");
+        System.out.println("You get a set amount of attempts to guess the computers number.");
         System.out.println("GOOD LUCK AND HAVE FUN.");
         System.out.println("----------------------------------------------------------------------------------");
     }

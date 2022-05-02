@@ -37,7 +37,7 @@ public class Hard extends Computer {
         //On the AI's first try, choose a random guess from arraylist
         int randomIndex = (int) (Math.random() * AIGuesses.size());
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < lengthOfSecretCode; i++) {
             this.playerGuess[i] = AIGuesses.get(randomIndex)[i];
         }
 

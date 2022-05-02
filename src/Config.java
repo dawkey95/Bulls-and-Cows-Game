@@ -2,18 +2,28 @@ import java.util.*;
 import java.io.*;
 
 public class Config {
-    public void loadConfig() throws Exception {
-        // create a reader object on the properties file
-        FileReader reader = new FileReader("db.properties");
+    // create properties object
+    Properties p = new Properties();
 
-        // create properties object
-        Properties p = new Properties();
+    public void loadConfig() {
+
+        // create a reader object on the properties file
+        FileReader reader = null;
+        try {
+            reader = new FileReader("config.properties");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // Add a wrapper around reader object
-        p.load(reader);
+        try {
+            p.load(reader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        // access properties data
-        System.out.println(p.getProperty("numberOfAttempts"));
-        System.out.println(p.getProperty("lengthOfSecretCodes"));
+    public String getProperty(String key) {
+        return this.p.getProperty(key);
     }
 }
