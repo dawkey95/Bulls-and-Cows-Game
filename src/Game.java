@@ -167,8 +167,10 @@ public class Game {
 
             try(BufferedReader fileReader = new BufferedReader(new FileReader(newFile + ".txt"))) {
                 String guess = null;
+                String Guess = null;
                 while((guess = fileReader.readLine()) != null) {
-                    user.fileContainingGuesses.add(guess);
+                    Guess = guess.replaceAll("\\s+","");
+                    user.fileContainingGuesses.add(Guess);
                 }
             }
 
