@@ -14,8 +14,6 @@ public abstract class Player {
     public Queue<String> fileContainingGuesses = new LinkedList<>();
     Config cfg = new Config();
 
-    //This cfg.loadConfig(); is printing to the console. FIX!!!!!!!!!!!
-
     public Player() {
         cfg.loadConfig();
 //        System.out.println(Integer.parseInt(cfg.getProperty("lengthOfSecretCode")));

@@ -9,12 +9,6 @@ public class Game {
     public List<String> saveToFile = new ArrayList<>();
     Config cfg = new Config();
 
-    public void loadConfig() {
-        cfg.loadConfig();
-        numberOfAttempts = Integer.parseInt(cfg.getProperty("numberOfAttempts"));
-    }
-
-    //cfg.loadConfig(); is printing to console. FIX!!!!!!!!!!!!!!
     public Game() {
         cfg.loadConfig();
         numberOfAttempts = Integer.parseInt(cfg.getProperty("numberOfAttempts"));
@@ -76,7 +70,6 @@ public class Game {
         }
         return gameDifficulty;
     }
-
 
     public void playGame(User user, Computer computer) {
         for (int i = 1; i <= numberOfAttempts; i++) {
