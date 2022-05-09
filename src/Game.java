@@ -3,17 +3,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+
+    //initialised variables to be used throughout
     private String gameWinner = null;
     private String guessMode, saveResult;
     int numberOfAttempts;
     public List<String> saveToFile = new ArrayList<>();
     Config cfg = new Config();
 
+//     Game constructor calls loadConfig() and updates the numberOfAttempts value from the config.properties
+//     file with what the user set there.
     public Game() {
         cfg.loadConfig();
         numberOfAttempts = Integer.parseInt(cfg.getProperty("numberOfAttempts"));
     }
 
+    //Next block of code sets and gets the game difficulty using enum and switches.
     public enum Level {
         EASY,
         MEDIUM,
@@ -34,6 +39,9 @@ public class Game {
         return this.gameDifficulty;
     }
 
+    //The user is asked to choose from predefined input requests as to which difficulty they want.
+    //This input is then taken as string and using the switch in BullsAndCows.java to switch
+    //between the 3 given difficulties.
     public Level chooseDifficulty() {
 
         boolean valid = false;
@@ -64,13 +72,17 @@ public class Game {
                 valid = true;
             }
 
+            //If the user enters anything other than asked for they are met with an error and asked to try again.
             else {
                 System.out.println("Input is invalid. Please enter a choice.");
             }
         }
+        //gameDifficulty is updated accordingly and returned which is used by the getGameDifficulty method
         return gameDifficulty;
     }
 
+    //Most used method in the game which asks the user to enter their guess or gets a generated guess form the Computer
+    //This method is responsible for the round by round guesses
     public void playGame(User user, Computer computer) {
         for (int i = 1; i <= numberOfAttempts; i++) {
             if (gameWinner != null) {
@@ -99,6 +111,9 @@ public class Game {
         saveFile();
     }
 
+    //Method prints the results of each given round showing how many cows or bulls each player got
+    //as well as what each player guessed.
+    //This method also saves the round by round prints to a file which can be saved at the end of the game.
     public void printResult(Player player) {
 
         System.out.println(player.getName() + " guess: " + Player.toString(player.playerGuess) + "\nResult: "
@@ -111,14 +126,20 @@ public class Game {
 
     }
 
+    //When the game is concluded the following method prints the result of the game
+    //and saves the results of the game to a file if the user chooses to do so.
     public void printGameWinner(Player player, int numberOfAttempts) {
 
+        //Winner is determined to the first player to get 4 bulls
+        //Also saves the result to file with the saveToFile.add
         if (player.bulls == 4) {
             System.out.println(player.getName() + " won!");
             this.gameWinner = player.getName();
             saveToFile.add("\n" + player.getName() + " won the game! Congratulations! 😃");
         }
 
+        //Else if no one gets 4 bulls before guess attempts are finished, the game ends in a draw.
+        //Also saves the result to file with the saveToFile.add
         else if (numberOfAttempts == Integer.parseInt(cfg.getProperty("numberOfAttempts"))) {
             System.out.println("Draw!");
             this.gameWinner = player.getName();
@@ -126,9 +147,11 @@ public class Game {
         }
     }
 
+    //This method sets the guess mode which the user can use.
     public void setGuessMode() {
         boolean valid =  false;
 
+        //User is prompted to input a value of 1 or 2 to set the guess mode used.
         while(!valid) {
             System.out.println("Please choose a guess method:");
             System.out.println("\t1. Manually enter guesses");
@@ -136,18 +159,21 @@ public class Game {
 
             String guessInput = Keyboard.readInput();
 
+            //If player chooses "1" then the user will manually enter all their guesses
             if(guessInput.equalsIgnoreCase("1")) {
                 this.guessMode = "Manually";
                 System.out.println("You have chosen to manually enter all your guesses. \nGood luck.");
                 valid = true;
             }
 
+            //If the user chooses "2" then they will be able to load guesses from a file
             else if(guessInput.equalsIgnoreCase("2")) {
                 this.guessMode = "Automatic";
                 System.out.println("You have chosen to automatically enter guesses from a file. \nGood luck.");
                 valid = true;
             }
 
+            //Lets user know to please enter a valid choice and prompts them to try again.
             else{
                 System.out.println("Please reenter your choice as that was an invalid response.");
             }
@@ -158,6 +184,8 @@ public class Game {
         return this.guessMode;
     }
 
+    //If the user chose "2" for auto guess form file then this method is called.
+    //The user is prompted to enter the file name containing their guesses.
     public void guessFromFile(Player user) {
         while(true) {
             System.out.println("Please enter a file name to be used.");
@@ -165,12 +193,15 @@ public class Game {
             String nameOfFile = Keyboard.readInput();
             File newFile = new File(nameOfFile);
 
+            //The file is tried to be read as the reader reads each line and storing it in guess.
+            //While the guess is not null the data is stored in guessNoSpaces which removes all whitespace between
+            //the characters if any is present.
             try(BufferedReader fileReader = new BufferedReader(new FileReader(newFile + ".txt"))) {
                 String guess = null;
-                String Guess = null;
+                String guessNoSpaces = null;
                 while((guess = fileReader.readLine()) != null) {
-                    Guess = guess.replaceAll("\\s+","");
-                    user.fileContainingGuesses.add(Guess);
+                    guessNoSpaces = guess.replaceAll("\\s+","");
+                    user.fileContainingGuesses.add(guessNoSpaces);
                 }
             }
 
@@ -182,6 +213,8 @@ public class Game {
         }
     }
 
+    //This method is called at the end of the game asking the player if they wish to save their game results to a file.
+    //They are asked to choose with yes or no, the program will ignore case due to .equalsIgnoreCase()
     public void saveResult() {
         boolean valid = false;
         while (!valid) {
@@ -202,6 +235,8 @@ public class Game {
         }
     }
 
+    //If the user chose to save file then this method is called which asks the user to name their file
+    //The file is then created and data written to file using the saveToFile which is utilised through the Game.java
     public void saveFile() {
         while(this.saveResult.equals("Yes")) {
             System.out.println("Enter a file name:");

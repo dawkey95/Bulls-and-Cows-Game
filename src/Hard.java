@@ -43,7 +43,7 @@ public class Hard extends Computer {
 
         this.clue(this.playerGuess, answer.secretCode);
 
-        //New array is created to remove
+        //New array is created
         ArrayList<int[]> newGuesses = new ArrayList<>();
 
         int countBulls = this.bulls;

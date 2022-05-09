@@ -47,7 +47,6 @@ public class BullsAndCows {
         game.saveToFile.add("\nYour code was: " + user.toString(user.secretCode));
 
         computer.setSecretCode();
-        //System.out.println("AI secret code is: " + computer.toString(computer.secretCode));
         game.saveToFile.add("AI code was: " + computer.toString(computer.secretCode));
         game.saveToFile.add("------");
 
