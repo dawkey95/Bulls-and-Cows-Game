@@ -16,11 +16,6 @@ Your assignment will be marked based on the correctness of your program and your
 
 Marks will be deducted if your code cannot be compiled or has bad programming style.
 
-## Submission
-After completing the assignment, you should have a functional Java program with some number of classes (depending on your own design), two UML class diagrams, and one page of reflective text. You submit by ensuring your GitHub repository for this assignment is up-to-date. We will download your repository for marking on the due date.
-
-Late submissions are not permitted. You will get a mark of zero if your repository does not contain your submission when we download it.
-
 ## Assignment Details
 The bulls and cows game is a code-breaking game designed for two or more players. Each player chooses a secret code of 4 digits from 0 – 9. The digits must be all different. The goal of the game is for each player to guess the other player's secret code.
 
@@ -32,8 +27,6 @@ For example, if the computer's secret code is 4281, the match responses for the 
 
 ![alt text](bc-first.PNG "Example Output 1")
 
-For more information about the game itself can be found [here](https://en.wikipedia.org/wiki/Bulls_and_Cows).
-
 ### Requirements
 The main goal of this assignment is to develop the bulls and cows game that allows a single player to play interactively against the computer. The game stores two secret codes, one from the player and one from the computer. The player and the computer will try to guess each other’s secret code. Both the player and the computer only have seven attempts for guessing the secret code. If the player enters an invalid input, the game should ask the player to try again. The game also lets the player choose the difficulty level to play against the computer. There are three levels: easy, medium and hard. The details of the difficulty levels will be described in later sections. In addition, the game can read from a text file that contains multiple guesses from the player, and save the results to another text file.
 
@@ -43,10 +36,6 @@ For this assignment, you'll complete a series of tasks as you work your way towa
 For this assignment, there is very little which is already given to you. Through this assignment, you'll gain experience in designing and building a complex program from scratch. Before starting to code, don't forget to design your classes and methods (i.e. create UML class and sequence diagrams)! You should apply the concepts you have learned so far in the course. You should not have everything in one class, and try to promote code reuse as much as possible. You must have at least one use of inheritance in this assignment.
 
 Using either pen & paper or the diagramming tool of your choice, prepare a UML class diagram which shows all the classes and important methods of your Bulls & Cows implementation, along with the appropriate relationships showing how these classes fit together. You should add this class diagram (as a PNG or JPEG) in the top level of your repository (i.e. where the README is) before the end of week 7 of the semester.
-
-To receive full marks for this assignment, you must show your design to one of the teaching staff before the end of week 7 for feedback on your design. You then need to take the feedback into consideration - whether you are going to follow the suggestions or you are going with your original design. You must also update your repository with the initial design by the end of week 7. Failure to demonstrate your initial design will result in a mark of zero for this assignment.
-
-Note: It is OK if your implementation doesn't match your initial design 100% - things do change! You will document this process in the later task. You will include all the feedback received as part of your reflection. 
 
 ## Task Two: The Beginning (12 marks)
 Implement the first part of the game allowing the player to guess the computer's secret code. The computer randomly generates the secret code at the beginning of the game, which it then lets the player guess. Remember that when generating the computer's secret code, each of the four digits must be different. Note that the player only has seven attempts to guess the secret code. The prompt for player input, results for each guess and the final outcome (i.e. whether the player has won the game or not) should be displayed appropriately to the console.
@@ -129,6 +118,3 @@ Your report must also explain the following:
 * If your final implementation is different to the initial design, explain why you have made such changes.
 * How did you ensure your program work as expected?
 
-In addition, write down the advanced configuration you have implemented in the report.
-
-Please use the [IEEE conference template](https://www.ieee.org/conferences_events/conferences/publishing/templates.html) for the reflection, using A4 page format, 10pt font for the body, and conference style. Make sure you add the latest class diagram and your reflection in the top level of your repository (i.e. where the README is).
